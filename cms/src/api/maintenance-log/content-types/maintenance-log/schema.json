@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "maintenance_logs",
+  "info": {
+    "singularName": "maintenance-log",
+    "pluralName": "maintenance-logs",
+    "displayName": "Maintenance Log"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "zone": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "engineer": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+name: RailVisionAI
+services:
+  - name: frontend
+    type: web
+    path: ./frontend
+    build: npm install && npm run build
+    start: npm run start
+    env:
+      - NEXT_PUBLIC_API_BASE_URL
+
+  - name: api-gateway
+    type: web
+    path: ./api-gateway
+    build: npm install
+    start: npm run start
+    env:
+      - AI_ENGINE_URL
+      - DB_CONNECTION_STRING
+
+  - name: ai-engine
+    type: web
+    path: ./ai-engine
+    build: pip install -r requirements.txt
+    start: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    env:
+      - OPENAI_API_KEY
+
+  - name: websocket
+    type: worker
+    path: ./websocket
+    build: npm install
+    start: node index.js
+
+  - name: cms
+    type: web
+    path: ./cms
+    build: npm install && npm run build
+    start: npm run develop
+    env:
+      - DATABASE_URL
+
+  - name: db
+    type: postgres
+    path: ./db
+
+  - name: auth
+    type: web
+    path: ./auth
+    build: npm install
+    start: npm run start
+    env:
+      - AUTH_SECRET
