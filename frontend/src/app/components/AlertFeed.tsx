@@ -44,6 +44,8 @@ export default function AlertFeed() {
       }
     }
     fetchAlerts();
+    const intervalId = setInterval(fetchAlerts, 15000); // refresh every 15 seconds
+  return () => clearInterval(intervalId); 
   }, []);
 
   return (

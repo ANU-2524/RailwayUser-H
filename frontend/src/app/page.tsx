@@ -9,6 +9,7 @@ import Predictor from './components/Predictor';
 import Summarizer from './components/Summarizer';
 import ImageAnalyzer from './components/ImageAnalyzer';
 import ReportParser from './components/ReportParser';
+import ChatBot from './components/ChatBot';
 
 export default function Home() {
   // State to hold AI-prefilled maintenance log data (from NLP Report Parser)
@@ -27,6 +28,7 @@ export default function Home() {
 <MaintenanceLogs prefillData={prefillData} setPrefillData={setPrefillData} />
       <LiveMetrics />
       <MetricsChart />
+      <ChatBot />
     </main>
   );
 }

@@ -3,11 +3,14 @@ const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
-
+require('dotenv').config();
 app.use(cors());
 
 // IMPORTANT: Add this line to parse JSON request bodies
 app.use(express.json());
+
+const chatRoutes = require('./chat');
+app.use('/api', chatRoutes);
 
 app.get('/alerts', async (req, res) => {
   try {
