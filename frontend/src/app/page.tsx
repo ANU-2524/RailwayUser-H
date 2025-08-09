@@ -11,8 +11,15 @@ import ImageAnalyzer from './components/ImageAnalyzer';
 import ReportParser from './components/ReportParser';
 import ChatBot from './components/ChatBot';
 
+interface LogData {
+  date: string;
+  zone: string;
+  description: string;
+  engineer: string;
+}
+
 export default function Home() {
-  const [prefillData, setPrefillData] = useState(null);
+  const [prefillData, setPrefillData] = useState<LogData | null>(null);
 
   const pageStyle: React.CSSProperties = {
     padding: '2rem',
