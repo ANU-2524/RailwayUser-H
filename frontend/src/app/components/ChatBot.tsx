@@ -9,7 +9,7 @@ export default function ChatBot() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const onSend = async (e) => {
+  const onSend = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
     setLoading(true);
