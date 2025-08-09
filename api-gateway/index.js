@@ -6,7 +6,7 @@ const app = express();
 require('dotenv').config();
 app.use(cors());
 
-// IMPORTANT: Add this line to parse JSON request bodies
+
 app.use(express.json());
 
 const chatRoutes = require('./chat');
