@@ -14,7 +14,7 @@ app.use('/api', chatRoutes);
 
 app.get('/alerts', async (req, res) => {
   try {
-    const response = await axios.get('http://localhost:8000/alerts');
+    const response = await axios.get('https://railwayuser-h-2.onrender.com/alerts');
     if (Array.isArray(response.data)) {
       res.json(response.data);
     } else {
@@ -27,7 +27,7 @@ app.get('/alerts', async (req, res) => {
 
 app.post('/summarize', async (req, res) => {
   try {
-    const response = await axios.post('http://localhost:8000/summarize', req.body);
+    const response = await axios.post('https://railwayuser-h-2.onrender.com/summarize', req.body);
     res.json(response.data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to get summary from AI Engine' });
@@ -50,7 +50,7 @@ app.post('/analyze-image', async (req, res) => {
       formData.append('file', stream, file.originalFilename);
 
       const axiosConfig = { headers: formData.getHeaders() };
-      const response = await axios.post('http://localhost:8000/analyze-image', formData, axiosConfig);
+      const response = await axios.post('https://railwayuser-h-2.onrender.com/analyze-image', formData, axiosConfig);
 
       res.json(response.data);
     });
@@ -62,7 +62,7 @@ app.post('/analyze-image', async (req, res) => {
 app.post('/predict', async (req, res) => {
   try {
     // Now req.body will be correctly parsed JSON
-    const response = await axios.post('http://localhost:8000/predict', req.body);
+    const response = await axios.post('https://railwayuser-h-2.onrender.com/predict', req.body);
     res.json(response.data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to get prediction from AI Engine' });
@@ -72,7 +72,7 @@ app.post('/predict', async (req, res) => {
 app.post('/parse-report', async (req, res) => {
   try {
     // req.body should be { report: string }
-    const response = await axios.post('http://localhost:8000/parse-report', req.body);
+    const response = await axios.post('https://railwayuser-h-2.onrender.com/parse-report', req.body);
     res.json(response.data);
   } catch (err) {
     res.status(500).json({ error: 'Failed to parse operator report' });
@@ -81,7 +81,7 @@ app.post('/parse-report', async (req, res) => {
 
 app.get('/logs', async (req, res) => {
   try {
-    const resp = await axios.get('http://localhost:1337/api/maintenance-logs');
+    const resp = await axios.get('https://railwayuser-h-4.onrender.com/api/maintenance-logs');
     const rawData = resp.data;
 
     if (!rawData || !Array.isArray(rawData.data)) {
@@ -108,7 +108,7 @@ app.post('/logs', async (req, res) => {
   try {
     const newLog = req.body;
 
-    const resp = await axios.post('http://localhost:1337/api/maintenance-logs', {
+    const resp = await axios.post('https://railwayuser-h-4.onrender.com/api/maintenance-logs', {
       data: newLog, // Strapi expects { data: { ...fields } }
     });
 
@@ -135,7 +135,7 @@ app.post('/logs', async (req, res) => {
 app.put('/logs/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const resp = await axios.put(`http://localhost:1337/api/maintenance-logs/${id}`, {
+    const resp = await axios.put(`https://railwayuser-h-4.onrender.com/api/maintenance-logs/${id}`, {
       data: req.body, // already flat, wrap in { data: ... }
     });
     const entry = resp.data && resp.data.data;
@@ -159,7 +159,7 @@ app.put('/logs/:id', async (req, res) => {
 app.delete('/logs/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    await axios.delete(`http://localhost:1337/api/maintenance-logs/${id}`);
+    await axios.delete(`https://railwayuser-h-4.onrender.com/api/maintenance-logs/${id}`);
     res.json({ message: `Log ${id} deleted`, status: 'success' });
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete maintenance log' });

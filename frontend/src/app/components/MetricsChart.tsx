@@ -16,7 +16,7 @@ export default function MetricsChart() {
   const [history, setHistory] = useState<Metric[]>([]);
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:8080');
+    const socket = new WebSocket('wss://railwayuser-h-5.onrender.com');
     socket.onmessage = (event) => {
       const metric = JSON.parse(event.data);
       setHistory(prev => [...prev.slice(-29), {
