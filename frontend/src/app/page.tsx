@@ -74,14 +74,10 @@ export default function Home() {
       </h1>
 
       {/* Top row: Alerts + Live Metrics */}
-      <div style={sectionWrapper}>
-        <div style={{ ...cardStyle }}>
-          <AlertFeed />
-        </div>
         <div style={{ ...cardStyle }}>
           <LiveMetrics />
         </div>
-      </div>
+      
 
       {/* Middle row: Predictor + Summarizer */}
       <div style={sectionWrapper}>
@@ -117,12 +113,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Maintenance Logs full width */}
+        {/* <div style={sectionWrapper}> */}
+       <div style={{ ...cardStyle }}>
+          <AlertFeed />
+        </div>
       <div style={{ ...fullWidthSection, ...cardStyle }}>
         <MaintenanceLogs prefillData={prefillData} setPrefillData={setPrefillData} />
       </div>
-
-      {/* ChatBot full width with a highlight border */}
+      {/* </div> */}
 
     </main>
   );
